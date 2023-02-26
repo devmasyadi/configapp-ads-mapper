@@ -21,16 +21,10 @@ object ConfigAppAdsMapper {
         configApp.tertiaryOpenAdId?.let { ConfigAds.tertiaryOpenAdId = it }
         configApp.quaternaryOpenAdId?.let { ConfigAds.quaternaryOpenAdId = it }
 
-        configApp.primaryAds?.let {
-            handleNetworkAds(it)?.let { networkAds ->
-                ConfigAds.primaryAds = networkAds
-            }
-        }
-        configApp.secondaryAds?.let { ConfigAds.secondaryAds = handleNetworkAds(it) }
+        configApp.primaryAds?.let { ConfigAds.primaryAds = handleNetworkAds(it) }
         configApp.secondaryAds?.let { ConfigAds.secondaryAds = handleNetworkAds(it) }
         configApp.tertiaryAds?.let { ConfigAds.tertiaryAds = handleNetworkAds(it) }
         configApp.quaternaryAds?.let { ConfigAds.quaternaryAds = handleNetworkAds(it) }
-
 
         configApp.primaryAppId?.let { ConfigAds.primaryAppId = it }
         configApp.secondaryAppId?.let { ConfigAds.secondaryAppId = it }
@@ -59,14 +53,15 @@ object ConfigAppAdsMapper {
 
     }
 
-    private fun handleNetworkAds(networkAds: String): NetworkAds? {
+    private fun handleNetworkAds(networkAds: String): NetworkAds {
         return when (networkAds) {
             "Admob" -> NetworkAds.ADMOB
             "Fan" -> NetworkAds.FAN
             "Applovin-Max" -> NetworkAds.APPLOVIN_MAX
             "Applovin-Discovery" -> NetworkAds.APPLOVIN_DISCOVERY
             "StartIo" -> NetworkAds.START_IO
-            else -> null
+            "UnityAds" -> NetworkAds.UNITY_ADS
+            else -> NetworkAds.NONE
         }
     }
 }
