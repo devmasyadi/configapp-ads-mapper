@@ -2,7 +2,7 @@ package com.androidmodule.configappadsmapper
 
 import com.adsmanager.core.ConfigAds
 import com.adsmanager.core.NetworkAds
-import com.androidmodule.configapp.domain.ConfigApp
+import com.google.android.material.configapp.domain.ConfigApp
 
 object ConfigAppAdsMapper {
 
